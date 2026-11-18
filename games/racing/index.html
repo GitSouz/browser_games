@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Grand Prix Racer</title>
+  <meta name="description" content="A free top-down racing game you can play in your browser. Race AI opponents on circuits inspired by famous Grand Prix tracks.">
+  <link rel="stylesheet" href="racing.css">
+</head>
+<body>
+  <canvas id="game"></canvas>
+
+  <!-- In-race HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-left">
+      <div class="hud-box"><span class="label">POS</span><span id="hud-pos" class="big">–</span></div>
+      <div class="hud-box"><span class="label">LAP</span><span id="hud-lap" class="big">–</span></div>
+    </div>
+    <div class="hud-times hud-box">
+      <div><span class="label">TIME</span><span id="hud-time">0:00.000</span></div>
+      <div><span class="label">LAST</span><span id="hud-last">–</span></div>
+      <div><span class="label">BEST</span><span id="hud-best">–</span></div>
+    </div>
+    <div class="hud-speed hud-box"><span id="hud-speed" class="big">0</span><span class="label">KM/H</span></div>
+    <button id="pause-btn" class="icon-btn" aria-label="Pause">❚❚</button>
+  </div>
+
+  <div id="lights" class="hidden" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div id="banner" class="hidden"></div>
+
+  <!-- Menu -->
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <a class="back" href="../../">← All games</a>
+      <h1>Grand Prix Racer</h1>
+      <p class="sub">Pick a circuit, beat the field. Arrow keys to drive.</p>
+      <h2>Circuit</h2>
+      <div id="track-list" class="track-list"></div>
+      <div class="options">
+        <div class="opt">
+          <h2>Laps</h2>
+          <div class="seg" id="opt-laps">
+            <button data-v="1">1</button><button data-v="3" class="on">3</button><button data-v="5">5</button>
+          </div>
+        </div>
+        <div class="opt">
+          <h2>Opponents</h2>
+          <div class="seg" id="opt-ai">
+            <button data-v="0">0</button><button data-v="3">3</button><button data-v="5" class="on">5</button>
+          </div>
+        </div>
+        <div class="opt">
+          <h2>Difficulty</h2>
+          <div class="seg" id="opt-diff">
+            <button data-v="easy">Easy</button><button data-v="medium" class="on">Medium</button><button data-v="hard">Hard</button>
+          </div>
+        </div>
+      </div>
+      <button id="start-btn" class="primary">Start race</button>
+      <div class="keys">
+        <span><kbd>↑</kbd> accelerate</span>
+        <span><kbd>↓</kbd> brake / reverse</span>
+        <span><kbd>←</kbd><kbd>→</kbd> steer</span>
+        <span><kbd>Esc</kbd> pause</span>
+        <span><kbd>R</kbd> restart</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause -->
+  <div id="pause" class="overlay hidden">
+    <div class="panel small">
+      <h1>Paused</h1>
+      <button id="resume-btn" class="primary">Resume</button>
+      <button id="restart-btn">Restart race</button>
+      <button id="quit-btn">Change circuit</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results" class="overlay hidden">
+    <div class="panel">
+      <h1 id="results-title">Finished</h1>
+      <p id="results-sub" class="sub"></p>
+      <table class="results-table">
+        <thead><tr><th>#</th><th>Driver</th><th>Time</th><th>Best lap</th></tr></thead>
+        <tbody id="results-body"></tbody>
+      </table>
+      <div class="row">
+        <button id="again-btn" class="primary">Race again</button>
+        <button id="menu-btn">Change circuit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Touch controls (shown on touch devices) -->
+  <div id="touch" class="hidden">
+    <div class="touch-group">
+      <button data-k="left" aria-label="Steer left">◀</button>
+      <button data-k="right" aria-label="Steer right">▶</button>
+    </div>
+    <div class="touch-group">
+      <button data-k="down" aria-label="Brake">BRAKE</button>
+      <button data-k="up" aria-label="Accelerate">GAS</button>
+    </div>
+  </div>
+
+  <script src="tracks.js"></script>
+  <script src="physics.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
