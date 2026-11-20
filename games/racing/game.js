@@ -153,11 +153,11 @@
     for (let slot = 0; slot < total; slot++) {
       const isPlayer = slot === total - 1;
       const back = 34 + slot * 46;
-      const side = slot % 2 === 0 ? -18 : 18;
+      const side = slot % 2 === 0 ? -32 : 32;
       const d = isPlayer ? { name: 'You', color: '#e10600', helmet: '#ffd400' } : ai[slot];
       const car = Ph.createCar(track, {
         back, side, name: d.name, color: d.color, helmet: d.helmet,
-        isPlayer, skill: d.skill || 1, lane: (Math.random() - 0.5) * 22,
+        isPlayer, skill: d.skill || 1, lane: (Math.random() - 0.5) * 50,
       });
       if (!isPlayer) car.vmaxMul = 0.94 + d.skill * 0.06;
       cars.push(car);
@@ -309,7 +309,7 @@
   function updateCamera(dt) {
     if (!player) return;
     const speed = Math.hypot(player.vx, player.vy);
-    const base = Math.max(0.5, Math.min(1.15, Math.min(W, H) / 760));
+    const base = Math.max(0.5, Math.min(1.15, Math.min(W, H) / 860));
     const zt = base * (1 - 0.18 * Math.min(1, speed / P.VMAX));
     const tx = player.x + player.vx * 0.32, ty = player.y + player.vy * 0.32;
     const k = 1 - Math.exp(-dt * 5);
@@ -426,7 +426,7 @@
     for (let slot = 0; slot < 6; slot++) {
       const back = 34 + slot * 46 - 20;
       const idx = (track.n - Math.round(back / track.spacing)) % track.n;
-      const side = slot % 2 === 0 ? -18 : 18;
+      const side = slot % 2 === 0 ? -32 : 32;
       ctx.save();
       ctx.translate(track.x[idx] + track.nx[idx] * side, track.y[idx] + track.ny[idx] * side);
       ctx.rotate(track.head[idx]);

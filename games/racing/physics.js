@@ -20,8 +20,8 @@
     LAT_GRASS: 280,
     GRASS_VMAX: 210,
     GRASS_DRAG: 1.4,
-    HALF_W: 44,         // half track width
-    WALL: 112,          // barrier distance from centre line
+    HALF_W: 88,         // half track width
+    WALL: 140,          // barrier distance from centre line
     CAR_R: 14,          // collision radius
   };
 
@@ -199,7 +199,7 @@
     const N = track.n;
     const speed = Math.hypot(car.vx, car.vy);
     car.laneT += dt * 0.35;
-    const lane = car.lane + Math.sin(car.laneT) * 8;
+    const lane = car.lane + Math.sin(car.laneT) * 16;
     const look = Math.round((45 + speed * 0.28) / track.spacing);
     const ti = (car.idx + look) % N;
     const px = track.x[ti] + track.nx[ti] * lane;
