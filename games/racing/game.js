@@ -122,7 +122,7 @@
   }
 
   // ---------- Game state ----------
-  const cfg = { trackId: 'monza', laps: 3, ai: 5, diff: 'medium' };
+  const cfg = { trackId: 'monzano', laps: 3, ai: 5, diff: 'medium' };
   let state = 'menu';
   let track = null;
   let cars = [];

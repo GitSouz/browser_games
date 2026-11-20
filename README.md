@@ -16,7 +16,7 @@ Any static host works for deployment (GitHub Pages, Netlify, Cloudflare Pages, e
 
 ### Grand Prix Racer (`games/racing/`)
 
-Top-down racer on four circuits loosely inspired by Monza, Monaco, Silverstone and Spa.
+Top-down racer on four fictional circuits: Monzano, Monterra, Silverbrook and Spavelle.
 
 - **Arrow keys** (or WASD) to drive, **Esc** to pause, **R** to restart
 - On-screen buttons on touch devices
